@@ -11,6 +11,8 @@ class Produto extends Model
 
     protected $table = 'produtos';
 
+		protected $connection = 'mysql';
+
     protected $fillable = [
         'name',
         'description',
