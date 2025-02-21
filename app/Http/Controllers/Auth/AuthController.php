@@ -25,7 +25,7 @@ class AuthController extends Controller
             return response()->json(["message" => "The provided credentials are incorrect"], 401);
         }
 
-        $token = $user->createToken($user->name, 'Auth-Token')->plainTextToken;
+        $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
         return response()->json([
             "message" => "Login Successful",
@@ -50,7 +50,7 @@ class AuthController extends Controller
         ]);
 
         if ($user) {
-            $token = $user->createToken($user->name, 'Auth-Token')->plainTextToken;
+            $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
             return response()->json([
                 "message" => "Login Successful",
@@ -61,6 +61,36 @@ class AuthController extends Controller
             return response()->json([
                 "message" => "Registration Failed"
             ]);
+        }
+    }
+
+    public function profile(Request $request)
+    {
+        if ($request->user()) {
+            return response()->json([
+                "message" => "Profile Information",
+                'data' => $request->user()
+            ]);
+        } else {
+            return response()->json([
+                "message" => "Could not fetch profile information"
+            ]);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->first();
+
+        if ($user) {
+            $user->tokens()->delete();
+            return response()->json([
+                "message" => "Logout Successful"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "User not found"
+            ], 404);
         }
     }
 }

@@ -29,7 +29,7 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::find($id);
         if (!$categoria) {
-            return new JsonResponse(['error' => 'Categoria not found'], 404);
+            return new JsonResponse(['error' => 'Categoria não encontrada'], 404);
         }
         return new JsonResponse($categoria);
     }
@@ -43,7 +43,7 @@ class CategoriaController extends Controller
 
         $categoria = Categoria::find($id);
         if (!$categoria) {
-            return new JsonResponse(['error' => 'Categoria not found'], 404);
+            return new JsonResponse(['error' => 'Categoria não encontrada'], 404);
         }
         $categoria->update($validatedData);
         return new JsonResponse($categoria);
@@ -53,9 +53,9 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::find($id);
         if (!$categoria) {
-            return new JsonResponse(['error' => 'Categoria not found'], 404);
+            return new JsonResponse(['error' => 'Categoria não encontrada'], 404);
         }
         $categoria->delete();
-        return new JsonResponse(['message' => 'Categoria deleted successfully']);
+        return new JsonResponse(['message' => 'Categoria removida com sucesso']);
     }
 }

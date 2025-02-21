@@ -31,7 +31,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
         if (!$produto) {
-            return new JsonResponse(['error' => 'Produto not found'], 404);
+            return new JsonResponse(['error' => 'Produto não encontrado'], 404);
         }
         return new JsonResponse($produto);
     }
@@ -47,7 +47,7 @@ class ProdutoController extends Controller
 
         $produto = Produto::find($id);
         if (!$produto) {
-            return new JsonResponse(['error' => 'Produto not found'], 404);
+            return new JsonResponse(['error' => 'Produto não encontrado'], 404);
         }
         $produto->update($validatedData);
         return new JsonResponse($produto);
@@ -60,6 +60,6 @@ class ProdutoController extends Controller
             return new JsonResponse(['error' => 'Produto not found'], 404);
         }
         $produto->delete();
-        return new JsonResponse(['message' => 'Produto deleted successfully']);
+        return new JsonResponse(['message' => 'Produto removido com sucesso']);
     }
 }

@@ -21,6 +21,6 @@ class MethodNotAllowedHttpException extends Exception
      */
     public function render(Request $request): Response
     {
-        return Response(/* ... */);
+        return new Response(['message' => 'Method not allowed'], 405);
     }
 }
