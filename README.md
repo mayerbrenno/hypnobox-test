@@ -365,4 +365,18 @@ Executa um soft delete de um registro através do *id*.
 }
 ```
 
----
+## Testes automatizados
+
+Para execução dos testes automatizados execute:
+
+```bash
+php artisan test
+```
+
+Caso queira executar testes especifícos, rodar o comando abaixo:
+
+```bash
+php artisan test --filter {nomeDoTeste}
+```
+
+*Após os testes serem executados, o banco de dados será limpo.*
