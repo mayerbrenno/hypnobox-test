@@ -37,13 +37,12 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     container_name: hypno-db
+    tty: true
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_HOST: '${DB_HOST}'
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: hypnoUser
+      MYSQL_PASSWORD: hypno_test
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
