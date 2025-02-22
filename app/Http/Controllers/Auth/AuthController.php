@@ -25,7 +25,7 @@ class AuthController extends Controller
             return response()->json(["message" => "The provided credentials are incorrect"], 401);
         }
 
-        $token = $user->createToken('Auth-Token')->plainTextToken;
+        $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
         return response()->json([
             "message" => "Login Successful",
@@ -50,7 +50,7 @@ class AuthController extends Controller
         ]);
 
         if ($user) {
-            $token = $user->createToken('Auth-Token')->plainTextToken;
+            $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
             return response()->json([
                 "message" => "Login Successful",

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,11 +11,14 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
-
-        $this->post('api/register', [
+        $response = $this->post('/register', [
             'name' => 'Test User',
-            'email' => 'test@example',
+            'email' => 'test@example.com',
             'password' => 'password',
-        ])->assertStatus(201);
+            'password_confirmation' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertNoContent();
     }
 }
